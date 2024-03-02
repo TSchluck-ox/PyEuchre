@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from typing import List
 
+# idc if this is not how you are supposed to use this decorator
 @dataclass
 class Card:
     suit: str
@@ -37,7 +38,7 @@ class Card:
         else:
             return self.suit == suit
         
-    def display(self) -> None:
+    def display(self, message: str = '') -> None:
         rank_dict = {
             '9': 'Nine',
             '10': 'Ten',
@@ -54,7 +55,10 @@ class Card:
             'H': 'Hearts'
         }
 
-        print(f"{ rank_dict.get(self.rank) } of { suit_dict.get(self.suit) }")
+        print(f"|{ rank_dict.get(self.rank) } of { suit_dict.get(self.suit) }|", message)
+
+    def __hash__(self) -> int:
+        return hash(self.rank + self.suit)
 
 
 def generate_deck() -> List[Card]:
