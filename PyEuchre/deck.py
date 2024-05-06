@@ -59,6 +59,9 @@ class Card:
 
     def __hash__(self) -> int:
         return hash(self.rank + self.suit)
+    
+    def to_dict(self) -> dict:
+        return {'suit': self.suit, 'rank': self.rank}
 
 
 def generate_deck() -> List[Card]:

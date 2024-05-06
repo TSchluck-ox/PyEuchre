@@ -1,18 +1,18 @@
 from typing import List
 
 class VariableCard:
-    total_variables = 0
 
-    def __init__(self) -> None:
-        self.index = VariableCard.total_variables
-        VariableCard.total_variables += 1
-
-    def reset(self):
-        VariableCard.total_variables = 0
-        return None
+    def __init__(self, size : int = 1) -> None:
+        self.suits = ['S', 'H', 'C', 'D']
+        self.size = size
     
-def create_variables(number: int = 1) -> List[VariableCard]:
-    out = []
-    for _ in range(number):
-        out.append(VariableCard())
-    return out
+    def eliminate_suit(self, suit: str):
+        self.suits.remove(suit)
+
+    def is_possible(self, card, trump: str):
+        for suit in self.suits:
+            if card.is_suit(suit, trump):
+                return True
+        return False
+    
+    
